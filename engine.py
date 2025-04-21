@@ -1,6 +1,7 @@
 import argparse
 from pymongo import MongoClient
-from dataBase import client,collection
+from dataBase import client, collection
+
 
 def greet():
 
@@ -8,7 +9,6 @@ def greet():
 
 
 greet()
-
 
 
 def inputs():
@@ -90,8 +90,7 @@ def delete(num):
         print(f"there is no note called: {num}")
         print(f"please type to see all the notes (python3 engine.py print)")
         return
-    note= getNotes()["notes"][int(num)-1]
-
+    note = getNotes()["notes"][int(num)-1]
 
     collection.delete_one(note)
     print(f"note {note["name"]} deleted successfly!")
@@ -102,24 +101,24 @@ def edit(num, content, size):
         print(f"there is no note called: {num}")
         print(f"please type to see all the notes (python3 engine.py print)")
         return
-    notes = getNotes()["notes"]
-    name = notes[int(num)-1]["name"]
-    collection.update_one({"name": name}, {"$set": {"content": content}})
+
+    note = getNotes()["notes"][int(num)-1]
+    collection.update_one(note, {"$set": {"content": content}})
     print("note edited successfly ")
 
 
-def codeHandler(command):
+def codeHandler(command,args):
+    
     if command == "add":
-        add(inputs()["args"].noteName, inputs()["args"].content)
+        add(args.noteName, args.content)
     if command == "edit":
-        edit(inputs()["args"].noteNum, inputs()[
-             "args"].content, size(getNotes()["notes"]))
+        edit(args.noteNum, args.content, size(getNotes()["notes"]))
     if command == "delete":
-        delete(inputs()["args"].noteNum)
+        delete(args.noteNum)
     if command == "print":
         printNotes(getNotes()["notes"], size(getNotes()["notes"]))
     if command == "show":
-        showNote(inputs()["args"].noteNum, getNotes()["notes"])
+        showNote(args.noteNum, getNotes()["notes"])
 
 
-codeHandler(inputs()["args"].command)
+codeHandler(inputs()["args"].command,inputs()["args"])
