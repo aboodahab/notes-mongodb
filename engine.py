@@ -70,7 +70,7 @@ def showNote(noteNumber, notes):
     if note:
         print(note)
         return
-    print("there is no note called: {}".format(note["name"]).capitalize())
+    print("there is no note called:: {}".format(note["name"]).capitalize())
     return
 
 
