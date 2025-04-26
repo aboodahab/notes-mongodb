@@ -17,7 +17,7 @@ def inputs():
     addParser = subparser.add_parser("add")
     addParser.add_argument("noteName", type=str, help="note name ")
     addParser.add_argument("content", nargs="+", help="note content")
-
+  
     editParser = subparser.add_parser("edit")
     editParser.add_argument("noteNum", help="note number")
     editParser.add_argument("content", nargs="+", help="the new note content")
@@ -35,18 +35,18 @@ def inputs():
 
 def add(name, content):
     document = {"name": name, "content": content}
-
+    #jskkksk
     collection.insert_one(document)
 
 
 def getNotes():
     notes = collection.find()
     return {"notes": notes}
-
+#slslslsllelele
 
 def size(notes):
     i = 0
-
+#aljlajewljarwljarwejrjklejlwerjwejkrewjkl
     for note in notes:
         i += 1
     return i
@@ -54,7 +54,7 @@ def size(notes):
 
 def printNotes(notes, size):
     if size == 0:
-        print("there are no notes !!")
+        print("there are no notes !!!")
         return
     i = 0
     for note in notes:
@@ -70,11 +70,11 @@ def showNote(noteNumber, size):
     if note:
         print(note)
         return
-    print("there is no note called:: {}".format(note["name"]).capitalize())
+    print("there is no note called: {}".format(note["name"]).capitalize())
     return
 
 
-def checkIfAll(name):
+def checkIfAll(name):#sjrwlrwlrwj
     if name.lower() == "all":
         return True
     return False
@@ -83,39 +83,39 @@ def checkIfAll(name):
 def delete(num):
     if checkIfAll(num):
         collection.delete_many({})
-        print("all notes deleted successfly!")
+        print("all notes deleted  successfly!")
         return
     notes = getNotes()["notes"]
     if size(notes) < int(num) or num.isalpha():
-        print(f"there is no note called: {num}")
-        print(f"please type to see all   the notes (python3 engine.py print)")
+        print(f"there is no  note called: {num}")
+        print(f"please type  to see all   the notes (python3 engine.py print)")
         return
     note = getNotes()["notes"][int(num)-1]
 
     collection.delete_one(note)
-    print(f"note {note["name"]} deleted successfly!")
+    print(f"note {note["name"]} deleted  successfly!")
 
 
 def edit(num, content, size):
     if size < int(num) or num.isalpha():
-        print(f"there is no note called: {num}")
-        print(f"please type to see all the notes (python3 engine.py print)")
+        print(f"there is no note  called: {num}")
+        print(f"please type to see  all the notes (python3 engine.py print)")
         return
 
     note = getNotes()["notes"][int(num)-1]
     collection.update_one(note, {"$set": {"content": content}})
-    print("note edited successfly ")
+    print("note edited  successfly  ")
 
 
 def codeHandler(args):
     command = args.command
-    if command == "add":
+    if command == "add":#shjrslwjrlwrlkjwrjwejlrwjr
         add(args.noteName, args.content)
     if command == "edit":
         edit(args.noteNum, args.content, size(getNotes()["notes"]))
     if command == "delete":
-        delete(args.noteNum, "s")
-    if command == "print":
+        delete(args.noteNum, "l")
+    if command == "print":#hsrlwrlsjwljr
         printNotes(getNotes()["notes"], size(getNotes()["notes"]))
     if command == "show":
         showNote(args.noteNum, size(getNotes()["notes"]))
