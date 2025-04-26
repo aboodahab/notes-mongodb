@@ -62,7 +62,7 @@ def printNotes(notes, size):
         print(i, note["name"])
 
 
-def showNote(noteNumber,size):
+def showNote(noteNumber, size):
     if size < noteNumber:
         print(f"sorry there is no note called:{noteNumber}")
         return
@@ -88,7 +88,7 @@ def delete(num):
     notes = getNotes()["notes"]
     if size(notes) < int(num) or num.isalpha():
         print(f"there is no note called: {num}")
-        print(f"please type to see all the notes (python3 engine.py print)")
+        print(f"please type to see all   the notes (python3 engine.py print)")
         return
     note = getNotes()["notes"][int(num)-1]
 
@@ -108,7 +108,7 @@ def edit(num, content, size):
 
 
 def codeHandler(args):
-    command=args.command
+    command = args.command
     if command == "add":
         add(args.noteName, args.content)
     if command == "edit":
@@ -118,7 +118,7 @@ def codeHandler(args):
     if command == "print":
         printNotes(getNotes()["notes"], size(getNotes()["notes"]))
     if command == "show":
-        showNote(args.noteNum,size(getNotes()["notes"]))
+        showNote(args.noteNum, size(getNotes()["notes"]))
 
 
 codeHandler(inputs()["args"])
