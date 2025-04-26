@@ -114,7 +114,7 @@ def codeHandler(args):
     if command == "edit":
         edit(args.noteNum, args.content, size(getNotes()["notes"]))
     if command == "delete":
-        delete(args.noteNum)
+        delete(args.noteNum, "s")
     if command == "print":
         printNotes(getNotes()["notes"], size(getNotes()["notes"]))
     if command == "show":
