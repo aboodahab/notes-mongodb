@@ -59,11 +59,11 @@ def printNotes(notes, size):
     i = 0
     for note in notes:
         i += 1
-        print(i, note["name"], note)
+        print(i, note["name"])
 
 
-def showNote(noteNumber, notes):
-    if size(notes) < noteNumber:
+def showNote(noteNumber,size):
+    if size < noteNumber:
         print(f"sorry there is no note called:{noteNumber}")
         return
     note = getNotes()["notes"][int(noteNumber)-1]
@@ -107,8 +107,8 @@ def edit(num, content, size):
     print("note edited successfly ")
 
 
-def codeHandler(command,args):
-    
+def codeHandler(args):
+    command=args.command
     if command == "add":
         add(args.noteName, args.content)
     if command == "edit":
@@ -118,7 +118,7 @@ def codeHandler(command,args):
     if command == "print":
         printNotes(getNotes()["notes"], size(getNotes()["notes"]))
     if command == "show":
-        showNote(args.noteNum, getNotes()["notes"])
+        showNote(args.noteNum,size(getNotes()["notes"]))
 
 
-codeHandler(inputs()["args"].command,inputs()["args"])
+codeHandler(inputs()["args"])
