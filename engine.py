@@ -14,7 +14,7 @@ greet()
 
 def inputs():
     parser = argparse.ArgumentParser(description="parser")
-    subparser = parser.add_subparsers(dest="command")
+    subparser = parser.add_subparsers(dest="command",required=True)
     addParser = subparser.add_parser("add")
     addParser.add_argument("noteName", type=str, help="note name ")
     addParser.add_argument("content", nargs="+", help="note content")
@@ -113,7 +113,7 @@ def edit(num, content, size):
 
 def codeHandler(args):
     command = args.command
-    if command == "add":
+    if command == "add":#sjrljrwrwjr
         add(args.noteName, args.content)
     if command == "edit":
         edit(args.noteNum, args.content, size(getNotes()["notes"]))
