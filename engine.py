@@ -44,7 +44,7 @@ def add(name, content):
 
 
 def getNotes():
-    notes = collection.find()
+    notes = list(collection.find())
     return {"notes": notes}
 #slslslsllelelell
 
@@ -94,9 +94,9 @@ def delete(num):
         print(f"there is no  note called: {num}")
         print(f"please type  to see all   the notes (python3 engine.py print)")
         return
-    note = getNotes()["notes"][int(num)-1]
+    note = getNotes()["notes"]
 
-    collection.delete_one(note)
+    collection.delete_one({"_id": note["_id"]})
     print(f"note {note["name"]} deleted  successfly!")
 
 
@@ -113,7 +113,7 @@ def edit(num, content, size):
 
 def codeHandler(args):
     command = args.command
-    if command == "add":#sjrljrwrwjr
+    if command == "add":
         add(args.noteName, args.content)
     if command == "edit":
         edit(args.noteNum, args.content, size(getNotes()["notes"]))
