@@ -73,7 +73,7 @@ def showNote(noteNumber, size):
     note = getNotes()["notes"][int(noteNumber)-1]
     if note:
         print(f"name: {(note["name"])}")
-        print(f"content: {" ".join(note["content"])}")
+        print(f"content: {" ".join(note["content"])} ")
         return
     print("there is no note  called: {}".format(note["name"]).capitalize())
     return
