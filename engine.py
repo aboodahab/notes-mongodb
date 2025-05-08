@@ -72,7 +72,8 @@ def showNote(noteNumber, size):
         return
     note = getNotes()["notes"][int(noteNumber)-1]
     if note:
-        print(note)
+        print(f"name: {(note["name"])}")
+        print(f"content: {" ".join(note["content"])}")
         return
     print("there is no note  called: {}".format(note["name"]).capitalize())
     return
@@ -118,7 +119,7 @@ def codeHandler(args):
     if command == "edit":
         edit(args.noteNum, args.content, size(getNotes()["notes"]))
     if command == "delete":
-        delete(args.noteNum, "l")
+        delete(args.noteNum,)
     if command == "print":#hsrlwwejlrwrrlsjwljr
         printNotes(getNotes()["notes"], size(getNotes()["notes"]))
     if command == "show":
